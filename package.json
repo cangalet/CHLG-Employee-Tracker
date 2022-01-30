@@ -22,6 +22,7 @@
     "express": "^4.17.2",
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.3",
+    "promise-mysql": "^5.1.0",
     "util": "^0.12.4"
   }
 }

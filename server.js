@@ -34,6 +34,11 @@ const DB = {
         await dbQueryUtil.addEmployee(employee);
         app();
     },
+    UpdateEmployeeRole: async() => {
+        // const employee = await userPrompts.promptAddEmployee();
+        // await dbQueryUtil.addEmployee(employee);
+        // app();
+    },
     Quit(){
         console.log('Exiting application!  Type "npm start" to initialize');
     }   

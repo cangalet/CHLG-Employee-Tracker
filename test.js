@@ -14,10 +14,120 @@
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
 
-return this.connection.query(`
-        SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT (manager.first_name, " ", manager.last_name) AS manager
-        FROM employee
-        LEFT JOIN role ON employee.role_id = role
-        LEFT JOIN role ON employee.role_id = salary`);
 
-        `SELECT employees.firstName AS First_Name, employees.lastName AS Last_Name, role.title AS Title, role.salary AS Salary, department.name AS Department, CONCAT(e.firstName, ' ' ,e.lastName) AS Manager FROM employees INNER JOIN role on role.id = employees.roleID INNER JOIN department on department.id = role.departmentID LEFT JOIN employees e on employees.managerID = e.id`;
+        //PromptResponses
+const DB = {
+        ViewDepartments: async() => {
+            const departments = await dbQueryUtil.viewDepartments();
+            console.table(departments);
+            app();
+        },
+        ViewRoles: async() => {
+            const roles = await dbQueryUtil.viewRoles();
+            console.table(roles);
+            app();
+        },
+        ViewEmployees: async() => {
+            const employees = await dbQueryUtil.viewEmployees();
+            console.table(employees);
+            app();
+        },
+        AddDepartment: async() => {
+            const department = await userPrompts.promptAddDepartment();
+            await dbQueryUtil.addDepartment(department);
+            app();
+        },
+        // AddRole: async() => {
+        //     const role = await userPrompts.promptAddRole();
+        //     await dbQueryUtil.addRole(role);
+        //     app();
+        // },
+        // AddEmployee: async() => {
+        //     const employee = await userPrompts.promptAddEmployee();
+        //     await dbQueryUtil.addEmployee(employee);
+        //     app();
+        // },
+        // UpdateEmployeeRole: async() => {
+        //     // const employee = await userPrompts.promptAddEmployee();
+        //     // await dbQueryUtil.addEmployee(employee);
+        //     // app();
+        // },
+        Quit(){
+            console.log('Exiting application!  Type "npm start" to initialize');
+        }   
+    }
+
+    promptAddRole(){
+        const getDepartments = async(departmentList) => {
+            departments = await dbQueryUtil.viewDepartments();
+            return departments.map(department => department.name)
+        }
+        return inquirer.prompt(
+            
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is the name of the role?',
+            },
+            {
+                type: 'input',
+                name: 'salary',
+                message: 'What is the salary of the role?',
+            },
+            {
+                type: 'list',
+                name: 'department',
+                message: 'Which department would you like to add this role to?',
+                choices: departmentList
+            }  
+        )}
+
+        // getDepartments = async(departmentList) => {
+//     departments = await dbQueryUtil.viewDepartments();
+//     return departments.map(department => department.name)
+// }
+
+const userPrompts = {
+    promptHomeMenu(){
+        inquirer.prompt(questions.home)
+    },
+    promptAddDepartment(){
+        return inquirer.prompt(questions.department)
+    },
+    // promptAddRole(){
+    //     const getDepartments = async(departmentList) => {
+    //         departments = await dbQueryUtil.viewDepartments();
+    //         return departments.map(department => department.name)
+    //     }
+    //     return inquirer.prompt(
+            
+    //         {
+    //             type: 'input',
+    //             name: 'name',
+    //             message: 'What is the name of the role?',
+    //         },
+    //         {
+    //             type: 'input',
+    //             name: 'salary',
+    //             message: 'What is the salary of the role?',
+    //         },
+    //         {
+    //             type: 'list',
+    //             name: 'department',
+    //             message: 'Which department would you like to add this role to?',
+    //             choices: departmentList
+    //         }  
+    //     )}
+}
+
+//PromptResponses
+const DB = {
+    ViewDepartments: async() => {
+        departments = await dbQueryUtil.viewDepartments();
+        console.log(departments.map(department => department.name));
+        app();
+    },
+
+
+
+module.exports = {userPrompts}

@@ -1,5 +1,7 @@
 const connection = require('./connection');
 
+
+
 class dbQueryUtil {
     constructor(connection) {
         this.connection = connection;
@@ -8,8 +10,8 @@ class dbQueryUtil {
     viewDepartments() {
         return this.connection.query('SELECT * FROM department');
     }
-    addDepartment(department) {
-        return this.connection.query('INSERT INTO department SET ?', department);
+    addDepartment(newDepartment) {
+        return this.connection.query('INSERT INTO department SET ?', newDepartment);
     }
     // Queries for handling Role Table
     viewRoles() {

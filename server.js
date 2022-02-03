@@ -1,44 +1,44 @@
-const {userPrompts} = require('./lib/index')
+const {userPrompts} = require('./lib')
 const dbQueryUtil = require('./db/dbQueryUtil');
 const cTable = require('console.table');
 
 //PromptResponses
 const DB = {
     ViewDepartments: async() => {
-        const departments = await dbQueryUtil.viewDepartments();
+        departments = await dbQueryUtil.viewDepartments();
         console.table(departments);
         app();
     },
     ViewRoles: async() => {
-        const roles = await dbQueryUtil.viewRoles();
+        roles = await dbQueryUtil.viewRoles();
         console.table(roles);
         app();
     },
     ViewEmployees: async() => {
-        const employees = await dbQueryUtil.viewEmployees();
+        employees = await dbQueryUtil.viewEmployees();
         console.table(employees);
         app();
     },
     AddDepartment: async() => {
-        const department = await userPrompts.promptAddDepartment();
+        department = await userPrompts.promptAddDepartment();
         await dbQueryUtil.addDepartment(department);
         app();
     },
     AddRole: async() => {
-        const role = await userPrompts.promptAddRole();
-        await dbQueryUtil.addRole(role);
-        app();
-    },
-    AddEmployee: async() => {
-        const employee = await userPrompts.promptAddEmployee();
-        await dbQueryUtil.addEmployee(employee);
-        app();
-    },
-    UpdateEmployeeRole: async() => {
-        // const employee = await userPrompts.promptAddEmployee();
-        // await dbQueryUtil.addEmployee(employee);
+        role = await userPrompts.promptAddRole();
+        // await dbQueryUtil.addRole(role);
         // app();
     },
+    // AddEmployee: async() => {
+    //     employee = await userPrompts.promptAddEmployee();
+    //     await dbQueryUtil.addEmployee(employee);
+    //     app();
+    // },
+    // UpdateEmployeeRole: async() => {
+    //     employee = await userPrompts.promptAddEmployee();
+    //     await dbQueryUtil.addEmployee(employee);
+    //     app();
+    // },
     Quit(){
         console.log('Exiting application!  Type "npm start" to initialize');
     }   

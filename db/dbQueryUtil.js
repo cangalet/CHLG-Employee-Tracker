@@ -1,7 +1,5 @@
 const connection = require('./connection');
 
-
-
 class dbQueryUtil {
     constructor(connection) {
         this.connection = connection;
@@ -17,8 +15,11 @@ class dbQueryUtil {
     viewRoles() {
         return this.connection.query('SELECT role.title, role.id, department.name, role.salary FROM role LEFT JOIN department ON role.department_id = department.id');
     }
+    // addRole(newRole) {
+    //     return this.connection.query('INSERT INTO role SET ?', newRole);
+    // }
     addRole(newRole) {
-        return this.connection.query('INSERT INTO role SET ?', newRole);
+        return this.connection.promise().query(`INSERT INTO role (title, salary, department_id) VALUE('${newRole.title}','${newRole.salary}','${newRole.department}')`);
     }
     // Queries for handling Employee Table
     viewEmployees() {

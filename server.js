@@ -25,9 +25,10 @@ const DB = {
         app();
     },
     AddRole: async() => {
-        role = await userPrompts.promptAddRole();
-        // await dbQueryUtil.addRole(role);
-        // app();
+        const role = await userPrompts.promptAddRole();
+        console.log(role)
+        await dbQueryUtil.addRole(role);
+        app();
     },
     // AddEmployee: async() => {
     //     employee = await userPrompts.promptAddEmployee();

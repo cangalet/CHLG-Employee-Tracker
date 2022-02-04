@@ -128,6 +128,27 @@ const DB = {
         app();
     },
 
+    const userPrompts = {
+        promptHomeMenu(){
+            return inquirer.prompt(questions.home)
+        },
+        promptAddDepartment(){
+            return inquirer.prompt(questions.department)
+        },
+        promptAddRole(){
+            // departmentList = []
+            // getDepartments().then(departmentList => console.log(departmentList))
+            getDepartments()
+                .then(departmentList => {
+                    return inquirer.prompt(questions.role(departmentList))
+                })
+                .then(answers => console.log(answers.title))
+                
+            // return inquirer.prompt(questions.role(departmentList))
+            // return inquirer.prompt(questions.role(departmentList))
+            
+        }
+
 
 
 module.exports = {userPrompts}

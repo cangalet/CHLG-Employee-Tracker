@@ -151,4 +151,35 @@ const DB = {
 
 
 
-module.exports = {userPrompts}
+        promptAddEmployee(){
+            return getRoles()
+                .then(getManagers()
+                    .then((departmentList, managerList) => console.log(departmentList, managerList)))
+            const managerList = getManagers();
+            return inquirer.prompt(questions.employee(roleList))  
+        }
+
+
+
+
+
+        promptAddEmployee(){
+            return getRoles().then(roleList => inquirer.prompt(questions.employee(roleList)))  
+        }
+
+        promptAddEmployee(){
+            return getManagers()
+                .then(managerList => inquirer.prompt(questions.manager(managerList))) 
+        }
+
+        promptAddEmployee(){
+            return getRoles()
+                .then(roleList => inquirer.prompt(questions.employee(roleList)))
+                .then(
+                    (answers) => {
+                        console.log(answers)
+                        return getManagers(answers)
+                        .then(managerList => inquirer.prompt(questions.manager(managerList))) 
+                    }
+                )  
+        }

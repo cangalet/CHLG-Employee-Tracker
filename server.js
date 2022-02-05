@@ -5,22 +5,22 @@ const cTable = require('console.table');
 //PromptResponses
 const DB = {
     ViewDepartments: async() => {
-        departments = await dbQueryUtil.viewDepartments();
+        const departments = await dbQueryUtil.viewDepartments();
         console.table(departments);
         app();
     },
     ViewRoles: async() => {
-        roles = await dbQueryUtil.viewRoles();
+        const roles = await dbQueryUtil.viewRoles();
         console.table(roles);
         app();
     },
     ViewEmployees: async() => {
-        employees = await dbQueryUtil.viewEmployees();
+        const employees = await dbQueryUtil.viewEmployees();
         console.table(employees);
         app();
     },
     AddDepartment: async() => {
-        department = await userPrompts.promptAddDepartment();
+        const department = await userPrompts.promptAddDepartment();
         await dbQueryUtil.addDepartment(department);
         app();
     },
@@ -30,11 +30,12 @@ const DB = {
         await dbQueryUtil.addRole(role);
         app();
     },
-    // AddEmployee: async() => {
-    //     employee = await userPrompts.promptAddEmployee();
-    //     await dbQueryUtil.addEmployee(employee);
-    //     app();
-    // },
+    AddEmployee: async() => {
+        const employee = await userPrompts.promptAddEmployee();
+        console.log(employee)
+        // await dbQueryUtil.addEmployee(employee);
+        // app();
+    },
     // UpdateEmployeeRole: async() => {
     //     employee = await userPrompts.promptAddEmployee();
     //     await dbQueryUtil.addEmployee(employee);

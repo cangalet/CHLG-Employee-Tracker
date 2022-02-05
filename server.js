@@ -33,8 +33,8 @@ const DB = {
     AddEmployee: async() => {
         const employee = await userPrompts.promptAddEmployee();
         console.log(employee)
-        // await dbQueryUtil.addEmployee(employee);
-        // app();
+        await dbQueryUtil.addEmployee(employee);
+        app();
     },
     // UpdateEmployeeRole: async() => {
     //     employee = await userPrompts.promptAddEmployee();

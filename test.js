@@ -183,3 +183,17 @@ const DB = {
                     }
                 )  
         }
+
+        promptAddEmployee(){
+            return getRoles()
+                .then(roleList => inquirer.prompt(questions.employee(roleList)))
+                .then(answers => {
+                    const employeeRole = answers;
+                    return getManagers()
+                        .then(managerList => inquirer.prompt(questions.manager(managerList)))
+                        .then(answers => {
+                            const employeeManager = answers;
+                            employeeRole.push(employeeManager)
+                        })
+                })
+        }

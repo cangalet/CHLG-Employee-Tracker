@@ -26,21 +26,19 @@ const DB = {
     },
     AddRole: async() => {
         const role = await userPrompts.promptAddRole();
-        console.log(role)
         await dbQueryUtil.addRole(role);
         app();
     },
     AddEmployee: async() => {
         const employee = await userPrompts.promptAddEmployee();
-        console.log(employee)
         await dbQueryUtil.addEmployee(employee);
         app();
     },
-    // UpdateEmployeeRole: async() => {
-    //     employee = await userPrompts.promptAddEmployee();
-    //     await dbQueryUtil.addEmployee(employee);
-    //     app();
-    // },
+    UpdateEmployeeRole: async() => {
+        const employee = await userPrompts.promptUpdateEmployee();
+        await dbQueryUtil.updateEmployee(employee);
+        app();
+    },
     Quit(){
         console.log('Exiting application!  Type "npm start" to initialize');
     }   

@@ -36,11 +36,17 @@ class dbQueryUtil {
         `);
         
     }
-    viewManagers() {
+    viewEmployeesList() {
+        return this.connection.query(`SELECT CONCAT(first_name,' ', last_name) AS name, employee.id AS value FROM employee`);
+    }
+    viewManagersList() {
         return this.connection.query(`SELECT CONCAT(first_name,' ', last_name) AS name, employee.id AS value FROM employee WHERE employee.manager_id IS NULL`);
     }
     addEmployee(employee) {
         return this.connection.query('INSERT INTO employee SET ?', employee);
+    }
+    updateEmployee(employee) {
+        return this.connection.query(`UPDATE employee SET role_id = ${employee.role_id} WHERE id = ${employee.employee_id}`, employee);
     }
 }
 
